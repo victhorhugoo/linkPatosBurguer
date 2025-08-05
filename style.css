@@ -1,7 +1,11 @@
+html, body {
+  height: 100%;
+  overflow-x: hidden; /* evita scroll lateral */
+}
 
-
+/* ====== Estilo geral da página ====== */
 body {
-    display: flex;
+    display: flex; /* Layout flexível */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -11,16 +15,17 @@ body {
     font-size: 20px;
     margin: 0;
 
+    /* Fundo com imagem e efeito fixo (para desktop) */
     background-image: url("images/Patos\ Burger_\ \(50\).jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-attachment: fixed;   /* fixa a imagem ao fundo */
+    background-attachment: fixed; /* mantém fixo no desktop */
     min-height: 100vh;
     border-image: fill 0 linear-gradient(#0003, #000);
-    
 }
 
+/* Camada escura sobre o fundo para melhor contraste */
 body::before {
     content: "";
     position: fixed;
@@ -28,81 +33,82 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* quanto maior, mais escuro */
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: -1;
-    margin-bottom: 0;
 }
 
+/* ====== Cabeçalho ====== */
 .cabecalho {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4px; /* espaço pequeno entre os elementos */
+    gap: 4px;
     padding-bottom: 30px;
     margin-top: 50px;
-    
 }
 
+/* Logo ajustável */
 .cabecalho img.logo {
-    width: 300px;
+    width: 100%; /* ocupa toda a largura possível */
+    max-width: 300px; /* mas não passa de 300px */
     height: auto;
-    margin-bottom: 0; /* espaço menor abaixo da imagem */
+    margin-bottom: 0;
     filter: drop-shadow(1px 1px 20px #000);
-    overflow-clip-margin: content-box;
-    overflow: clip;
 }
+
+/* Título */
 .cabecalho h1 {
     margin-top: 0px;
     font-size: 30px;
-    
 }
 
- 
+/* Subtítulo e descrição */
 .cabecalho h3, 
 .cabecalho p {
-  margin: 2px 0; /* margens verticais pequenas */
-  padding: 0;
-  color: rgba(255, 255, 255, 0.8);
+    margin: 2px 0;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.8);
 }
 
-
+/* ====== Lista de links ====== */
 .links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    list-style: none; /* remove marcadores */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .links ul li {
-  margin-bottom: 20px;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
+/* Botões de link */
 .links ul li a {
-  display: inline-block; /* para aceitar largura */
-  width: 500px;          /* largura fixa para todos */
-  text-align: center;    /* centraliza o texto */
-  box-sizing: border-box; /* inclui padding e border na largura */
-
-  padding: 1rem 2.5rem;
-  cursor: pointer;
-  border: solid 2px #000;
-  border-right-width: 4px;
-  border-bottom-width: 4px;
-  text-transform: uppercase;
-  font-weight: 400;
-  font-size: 1.2rem;
-  border-radius: 5rem;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(220, 157, 11, 0.954);
-  
-  
+    display: inline-block;
+    width: 100%;       /* agora ocupa toda a largura possível */
+    max-width: 500px;  /* mas não passa de 500px */
+    text-align: center;
+    box-sizing: border-box;
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    border: solid 2px #000;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1.2rem;
+    border-radius: 5rem;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(220, 157, 11, 0.954);
 }
 
+/* Efeito hover nos botões */
 .links ul li a:hover {
     color: aliceblue;
     background-color: brown;
@@ -110,117 +116,80 @@ body::before {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* ====== Redes sociais ====== */
 .social {
     display: flex;
     margin: 0;
-    width: 100vh;
+    width: 100%; /* agora ocupa largura total, sem travar no vh */
     margin-top: 20px;
     justify-content: center;
     gap: 20px;
-    
+    flex-wrap: wrap; /* permite quebrar linha no celular */
 }
 
-.social a img{
+.social a img {
     width: 50px;
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+/* Efeito hover nos ícones sociais */
 .social a:hover img {
-  transform: scale(1.2); /* aumenta 20% */
-  filter: brightness(1.3); /* deixa mais claro */
+    transform: scale(1.2);
+    filter: brightness(1.3);
 }
 
+/* ====== Rodapé ====== */
 footer {
     padding-top: 50px;
     padding-bottom: 20px;
-    font-size: 15px
+    font-size: 15px;
+    text-align: center;
 }
 
-@media (max-width: 393px) {
-  body {
-    font-size: 16px;
-    padding: 10px;
-    background-attachment: scroll; /* desativa fixo em celulares que não suportam bem */
-  }
+/* ====== Ajustes para telas menores (tablets e celulares) ====== */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        padding: 10px;
+        background-attachment: fixed; /* melhora desempenho no mobile */
+    }
 
-  .cabecalho img.logo {
-    width: 220px;
-  }
+    /* Logo menor */
+    .cabecalho img.logo {
+        max-width: 220px;
+    }
 
-  .cabecalho h1 {
-    font-size: 24px;
-    text-align: center;
-  }
+    /* Título menor */
+    .cabecalho h1 {
+        font-size: 24px;
+        text-align: center;
+    }
 
-  .cabecalho h3,
-  .cabecalho p {
-    font-size: 14px;
-    text-align: center;
-  }
+    /* Texto menor */
+    .cabecalho h3,
+    .cabecalho p {
+        font-size: 14px;
+        text-align: center;
+    }
+    .links ul li{
+        width: 100%;
+    }
 
-  .links ul li a {
-    width: 300px;         /* ocupa quase toda a largura da tela */
-    font-size: 1rem;
-    padding: 0.8rem 1.5rem;
-  }
+    /* Botões ocupando mais a largura */
+    .links ul li a {
+        width: 100%;
+        max-width: 400px;
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
 
-  .social {
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+    /* Ícones menores */
+    .social a img {
+        width: 40px;
+    }
 
-  .social img {
-    width: 40px;
-  }
-
-  footer {
-    font-size: 12px;
-    text-align: center;
-  }
-}
-
-@media (min-width: 480px) {
-  body {
-    font-size: 18px;
-    padding: 15px;
-    background-attachment: scroll; /* continua melhor para mobile */
-  }
-
-  .cabecalho img.logo {
-    width: 250px;
-  }
-
-  .cabecalho h1 {
-    font-size: 28px;
-    text-align: center;
-  }
-
-  .cabecalho h3,
-  .cabecalho p {
-    font-size: 16px;
-    text-align: center;
-  }
-
-  .links ul li a {
-    width: 400px;         /* ocupa quase toda a largura da tela */
-    font-size: 1.1rem;
-    padding: 1rem 1.5rem;
-  }
-
-  .social {
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-  }
-
-  .social img {
-    width: 45px;
-  }
-
-  footer {
-    font-size: 14px;
-    text-align: center;
-  }
+    /* Texto do rodapé menor */
+    footer {
+        font-size: 12px;
+    }
 }
